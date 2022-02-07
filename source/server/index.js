@@ -1,4 +1,5 @@
 import { createServer } from 'http';
+import ip from 'ip';
 import render from './render';
 
 const handler = async (request, response) => {
@@ -10,4 +11,6 @@ const handler = async (request, response) => {
   return null;
 };
 
-createServer(handler).listen(3000);
+createServer(handler).listen(3000, () => {
+  console.log(`server stared at: ${ip.address()}:3000`);
+});

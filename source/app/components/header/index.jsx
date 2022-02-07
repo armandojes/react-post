@@ -2,32 +2,42 @@ import React from 'react';
 import styled from 'styled-components';
 import logoSrc from 'app/assets/logo.png';
 import { Link } from 'react-router-dom';
+import { Menu } from '@mui/icons-material';
 import Container from '../../layout/container';
 import Text from '../../layout/text';
+import Responsive from '../../layout/hide';
 
 function Header() {
   return (
     <HeaderStyled>
       <Container disabledVerticalPadding>
         <HeaderBody>
-          <LeftSection>
-            <Logo src={logoSrc} />
-            <MenuWrapper>
-              <MenuItem to="/">
-                <Text>Inicio</Text>
-              </MenuItem>
-              <MenuItem to="/about">
-                <Text>
-                  Acerca
-                </Text>
-              </MenuItem>
-              <MenuItem to="/ssr">
-                <Text>
-                  SSR
-                </Text>
-              </MenuItem>
-            </MenuWrapper>
-          </LeftSection>
+
+          <Responsive rule="min-width:601px">
+            <LeftSection>
+              <Logo src={logoSrc} />
+              <MenuWrapper>
+                <MenuItem to="/">
+                  <Text>Inicio</Text>
+                </MenuItem>
+                <MenuItem to="/about">
+                  <Text>
+                    Acerca
+                  </Text>
+                </MenuItem>
+                <MenuItem to="/ssr">
+                  <Text>
+                    SSR
+                  </Text>
+                </MenuItem>
+              </MenuWrapper>
+            </LeftSection>
+          </Responsive>
+
+          <Responsive rule="max-width:600px">
+            <Menu />
+          </Responsive>
+
           <RightSection>
             <Text>DARKMODE</Text>
           </RightSection>

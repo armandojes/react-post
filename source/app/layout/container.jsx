@@ -11,7 +11,7 @@ function Container({ children, disabledVerticalPadding }) {
 }
 
 const Wrapper = styled.div`
-  max-width: 1280px;
+  max-width: 1080px;
   margin: auto;
   padding: ${(props) => (props.$disabledVerticalPadding ? '0px .5em' : '.5em')};
 `;

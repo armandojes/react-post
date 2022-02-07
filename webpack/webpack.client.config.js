@@ -1,8 +1,9 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ip = require('ip');
 
-const publicPath = 'http://localhost:8080/';
+const publicPath = `http://${ip.address()}:8080/`;
 const ENV = process.env.NODE_ENV;
 
 const config = {

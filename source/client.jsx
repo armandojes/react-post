@@ -6,12 +6,13 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import reduxLogger from 'redux-logger';
 import reduxThunk from 'redux-thunk';
+import reducer from 'app/redux/reducer';
 
 import App from './app';
 
 const initialState = window.reduxState;
 const enhander = composeWithDevTools(applyMiddleware(reduxThunk, reduxLogger));
-const store = createStore(() => ({}), initialState, enhander);
+const store = createStore(reducer, initialState, enhander);
 
 hydrate(
   <StrictMode>
