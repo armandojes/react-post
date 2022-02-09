@@ -1,4 +1,4 @@
-import { bool, object, oneOfType, string } from 'prop-types';
+import { bool, string } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -12,7 +12,7 @@ function Text({ children, bold, size, color }) {
 
 Text.defaultProps = {
   bold: false,
-  size: 'initial',
+  size: '1em',
   color: '#000',
 };
 
@@ -20,13 +20,14 @@ Text.propTypes = {
   children: string.isRequired,
   bold: bool,
   size: string,
-  color: oneOfType([string, object]),
+  color: string,
 };
 
 const TextStyled = styled.div`
   font-weight: ${(props) => (props.$bold ? 'bold' : 'normal')};
   font-size: ${(props) => (props.$size)};
   color: ${(props) => props.$color};
+  line-height: 1.5em;
 `;
 
 export default Text;

@@ -3,4 +3,6 @@ export const colors = {
   blakLigth: '#282c34',
   blueLight: '#61dafb',
   dark: '#282c34',
+  grayLight: '#e6e6e6',
+  gray: '#80808094',
 };

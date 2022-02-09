@@ -1,10 +1,10 @@
-import { bool, element } from 'prop-types';
+import { bool, element, string } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-function Container({ children, disabledVerticalPadding }) {
+function Container({ children, disabledVerticalPadding, className }) {
   return (
-    <Wrapper $disabledVerticalPadding={disabledVerticalPadding}>
+    <Wrapper $disabledVerticalPadding={disabledVerticalPadding} className={className}>
       {children}
     </Wrapper>
   );
@@ -19,10 +19,12 @@ const Wrapper = styled.div`
 Container.propTypes = {
   children: element.isRequired,
   disabledVerticalPadding: bool,
+  className: string,
 };
 
 Container.defaultProps = {
   disabledVerticalPadding: false,
+  className: '',
 };
 
 export default Container;

@@ -8,23 +8,6 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none!important;
   }
-
-  @media screen and (max-width:1550px) {
-    body {
-      font-size: 14px;
-    }
-  }
-
-  @media screen and (max-width:1550px) {
-    body {
-      font-size: 14px;
-    }
-  }
-  @media screen and (max-width:1300px) {
-    body {
-      font-size: 12px;
-    }
-  }
 `;
 
 export default GlobalStyle;
