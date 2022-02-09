@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
 // slices reducer
-import theme from './theme';
+import meta from './meta';
 
 const reducer = combineReducers({
-  theme,
+  meta,
 });
 
 export default reducer;
