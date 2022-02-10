@@ -25,6 +25,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'object-curly-newline': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/no-danger': 'off',
   },
   globals: {
     ENV: 'readonly',

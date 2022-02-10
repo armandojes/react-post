@@ -3,7 +3,7 @@ import React from 'react';
 
 function Markup({ content, reduxState, styleElement }) {
   return (
-    <html lang="es">
+    <html lang="es" charset="utf-8">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,4 +1,4 @@
-import { bool, element, string } from 'prop-types';
+import { array, bool, element, oneOfType, string } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 `;
 
 Container.propTypes = {
-  children: element.isRequired,
+  children: oneOfType([element, array]).isRequired,
   disabledVerticalPadding: bool,
   className: string,
 };

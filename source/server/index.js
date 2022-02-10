@@ -6,6 +6,7 @@ const handler = async (request, response) => {
   if (request.url === '/favicon.ico') return response.end();
 
   const fullHtml = await render(request);
+  response.setHeader('Content-Type', 'text/html; charset=utf-8');
   response.write(fullHtml);
   response.end();
   return null;

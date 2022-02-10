@@ -6,12 +6,13 @@ import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reactFetch from 'react-fetch-ssr';
+import reducer from 'app/redux/reducer';
 import Markup from './markup';
 import App from '../app';
 
 const render = async (request) => {
   try {
-    const store = createStore(() => ({}), applyMiddleware(thunk));
+    const store = createStore(reducer, applyMiddleware(thunk));
     const sheet = new ServerStyleSheet();
 
     const { content } = await reactFetch.renderToStringAsync(

@@ -7,6 +7,7 @@ import Container from '../container';
 import Text from '../text';
 import Responsive from '../hide';
 import { colors } from '../../theme/values';
+import ToogleMode from './components/toogleMode';
 
 function Header() {
   return (
@@ -40,7 +41,7 @@ function Header() {
           </Responsive>
 
           <RightSection>
-            <Text color={colors.white}>DARKMODE</Text>
+            <ToogleMode />
           </RightSection>
         </HeaderBody>
       </Container>

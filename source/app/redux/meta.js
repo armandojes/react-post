@@ -22,6 +22,6 @@ const { reducer, actions } = createSlice({
   },
 });
 
-export { actions };
+export const { setLanguage, setTheme } = actions;
 
 export default reducer;
