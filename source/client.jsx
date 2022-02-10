@@ -9,9 +9,10 @@ import reduxThunk from 'redux-thunk';
 import reducer from 'app/redux/reducer';
 
 import App from './app';
+import persistAtCookie from './app/redux/middlewares/persistAtCookie';
 
 const initialState = window.reduxState;
-const enhander = composeWithDevTools(applyMiddleware(reduxThunk, reduxLogger));
+const enhander = composeWithDevTools(applyMiddleware(reduxThunk, reduxLogger, persistAtCookie));
 const store = createStore(reducer, initialState, enhander);
 
 hydrate(
