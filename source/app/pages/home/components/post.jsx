@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Text from 'app/layout/text';
+import Text from 'app/components/text';
 import { colors } from '../../../theme/values';
 
 function Post() {

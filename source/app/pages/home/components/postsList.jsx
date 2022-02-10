@@ -2,16 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Post from './post';
 
-function Posts() {
+function PostsList() {
   return (
     <Wrapper>
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
       <Post />
       <Post />
       <Post />
@@ -22,4 +15,4 @@ function Posts() {
 
 const Wrapper = styled.div``;
 
-export default Posts;
+export default PostsList;

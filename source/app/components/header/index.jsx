@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import logoSrc from 'app/assets/logo.png';
 import { Link } from 'react-router-dom';
 import { Menu } from '@mui/icons-material';
-import Container from '../../layout/container';
-import Text from '../../layout/text';
-import Responsive from '../../layout/hide';
+import Container from '../container';
+import Text from '../text';
+import Responsive from '../hide';
+import { colors } from '../../theme/values';
 
 function Header() {
   return (
@@ -18,15 +19,15 @@ function Header() {
               <Logo src={logoSrc} />
               <MenuWrapper>
                 <MenuItem to="/">
-                  <Text>Inicio</Text>
+                  <Text color={colors.white}>Inicio</Text>
                 </MenuItem>
                 <MenuItem to="/about">
-                  <Text>
+                  <Text color={colors.white}>
                     Acerca
                   </Text>
                 </MenuItem>
                 <MenuItem to="/ssr">
-                  <Text>
+                  <Text color={colors.white}>
                     SSR
                   </Text>
                 </MenuItem>
@@ -39,7 +40,7 @@ function Header() {
           </Responsive>
 
           <RightSection>
-            <Text>DARKMODE</Text>
+            <Text color={colors.white}>DARKMODE</Text>
           </RightSection>
         </HeaderBody>
       </Container>
@@ -55,8 +56,7 @@ const HeaderBody = styled.div`
 `;
 
 const HeaderStyled = styled.header`
-  background: #fff;
-  border-bottom: 1px solid #cdcdcd;
+  background: ${colors.dark};
   box-shadow: 0px 5px 5px #cdcdcd;
 `;
 

@@ -1,24 +1,23 @@
 import styled from 'styled-components';
 import React from 'react';
-import Container from 'app/layout/container';
-import TextField from 'app/layout/TextFiled';
+import TextField from 'app/components/TextFiled';
 import { colors } from 'app/theme/values';
 import { Search } from '@mui/icons-material';
 
 function SearchBar() {
   return (
-    <ContainerStyled>
+    <Wrapper>
       <InputWrapper>
         <TextFieldStyled />
         <SearchButton>
           <Search />
         </SearchButton>
       </InputWrapper>
-    </ContainerStyled>
+    </Wrapper>
   );
 }
 
-const ContainerStyled = styled(Container)`
+const Wrapper = styled.div`
   padding-top: 2em;
   padding-bottom: 2em;
   display: flex;
