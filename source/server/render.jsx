@@ -12,7 +12,8 @@ import App from '../app';
 
 const render = async (request) => {
   try {
-    const store = createStore(reducer, applyMiddleware(thunk));
+    const reduxPersistState = JSON.parse(request.cookies.reduxState);
+    const store = createStore(reducer, reduxPersistState, applyMiddleware(thunk));
     const sheet = new ServerStyleSheet();
 
     const { content } = await reactFetch.renderToStringAsync(
