@@ -4,6 +4,7 @@ import { Normalize } from 'styled-normalize';
 import GlobalStyle from 'app/GlobalStyle';
 import { StylesProvider } from '@mui/styles';
 import Home from 'app/pages/home';
+import Login from 'app/pages/login';
 import Header from './components/header';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </>
     </StylesProvider>

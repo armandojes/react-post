@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none!important;
   }
+
 `;
 
 export default GlobalStyle;

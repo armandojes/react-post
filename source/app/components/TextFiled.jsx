@@ -1,6 +1,7 @@
 import { bool } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import { colors } from '../theme/values';
 
 function TextField({ fullWidth, ...props }) {
   return (
@@ -21,7 +22,8 @@ const Input = styled.input`
   padding: .5em;
   box-sizing: border-box;
   border-radius: 5px;
-  border: 1px solid gray;
+  border: 1px solid ${colors.gray};
+  color: ${colors.dark};
   outline: none;
   width: ${(props) => (props.$fullWidth ? '100%' : 'initial')};
 `;

@@ -26,7 +26,7 @@ module.exports = {
     'object-curly-newline': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/no-danger': 'off',
-    'no-unused-vars': 'off',
+    'max-len': 'off',
   },
   globals: {
     ENV: 'readonly',
