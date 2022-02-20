@@ -2,9 +2,9 @@ import { bool, string } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-function Text({ children, bold, size, color, align }) {
+function Text({ children, bold, size, color, align, className }) {
   return (
-    <TextStyled $bold={bold} $size={size} $color={color} $align={align}>
+    <TextStyled $bold={bold} $size={size} $color={color} $align={align} className={className}>
       {children}
     </TextStyled>
   );
@@ -15,6 +15,7 @@ Text.defaultProps = {
   size: '1em',
   color: '#000',
   align: 'left',
+  className: '',
 };
 
 Text.propTypes = {
@@ -23,6 +24,7 @@ Text.propTypes = {
   size: string,
   color: string,
   align: string,
+  className: string,
 };
 
 const TextStyled = styled.div`

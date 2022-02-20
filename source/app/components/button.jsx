@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../theme/values';
 
-function Button({ children, className, textAlign, backgrounColor, backgrounHoverColor, textColor, textHoverColor }) {
+function Button({ children, className, textAlign, backgrounColor, backgrounHoverColor, textColor, textHoverColor, ...otherProps }) {
   return (
     <ButtonStyled
       className={className}
@@ -12,6 +12,7 @@ function Button({ children, className, textAlign, backgrounColor, backgrounHover
       $backgrounHoverColor={backgrounHoverColor}
       $textColor={textColor}
       $textHoverColor={textHoverColor}
+      {...otherProps}
     >
       {children}
     </ButtonStyled>
