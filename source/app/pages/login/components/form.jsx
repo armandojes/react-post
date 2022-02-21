@@ -6,42 +6,54 @@ import { func, object, string } from 'prop-types';
 import Spacer from 'app/components/spacer';
 import Text from 'app/components/text';
 import Button from 'app/components/button';
+import ErrorMessage from '../../../components/errorMessage';
 
-function Form({ values, errors, onInputChange, errorMessage }) {
+function Form({ inputValues, onInputChange, onClick, inputsWithError, onRemoveError, errorMessage }) {
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    onInputChange(name, value);
+    onInputChange(event.target.name, event.target.value);
+  };
+
+  const handleInputFocus = (event) => {
+    if (inputsWithError[event.target.name]) {
+      onRemoveError(event.target.name);
+    }
   };
 
   return (
     <FormElement>
       <Text size="1.2em" align="center">Iniciar session</Text>
       <Spacer height="2em" />
-      {!!errorMessage && (<ErrorMessage>{errorMessage}</ErrorMessage>)}
+      <ErrorMessage message={errorMessage} />
       <Text>Correo electrónico</Text>
       <TextFiled
-        autoComplete="off"
+        onFocus={handleInputFocus}
+        error={!!inputsWithError.email}
+        value={inputValues.email || ''}
         name="email"
-        error={!!errors.email || false}
-        value={values.email || ''}
         onChange={handleInputChange}
       />
       <Spacer height="1em" />
       <Text>contraseña</Text>
       <TextFiled
-        name="password"
-        autoComplete="off"
-        type="password"
-        error={!!errors.password || false}
-        value={values.password || ''}
+        onFocus={handleInputFocus}
+        error={!!inputsWithError.password}
+        value={inputValues.password || ''}
         onChange={handleInputChange}
+        name="password"
       />
+      <Spacer height="1.5em" />
+
+      <div>
+        <input onChange={(e) => console.log('firs', e)} name="gender" type="radio" value="male" /> male
+        <input onChange={(e) => console.log('second', e)} name="gender" type="radio" value="female" /> female
+      </div>
+
       <Spacer height="1.5em" />
       <Button
         textAlign="center"
         backgrounColor={colors.blueLight}
         textColor={colors.white}
-        type="submit"
+        onClick={onClick}
       >
         Iniciar session
       </Button>
@@ -51,20 +63,24 @@ function Form({ values, errors, onInputChange, errorMessage }) {
 }
 
 Form.propTypes = {
-  errors: object,
-  values: object,
+  onClick: func,
+  inputValues: object,
+  inputsWithError: object,
+  onRemoveError: func,
   onInputChange: func,
   errorMessage: string,
 };
 
 Form.defaultProps = {
-  errorMessage: null,
-  errors: {},
-  values: {},
   onInputChange: () => {},
+  onClick: () => {},
+  onRemoveError: () => {},
+  inputValues: {},
+  inputsWithError: {},
+  errorMessage: null,
 };
 
-const FormElement = styled.form`
+const FormElement = styled.div`
   padding: 2em;
   border: 1px solid ${colors.gray};
   box-shadow: 5px 5px 10px ${colors.gray};
@@ -72,14 +88,6 @@ const FormElement = styled.form`
   display: flex;
   flex-direction: column;
   width: 300px;
-`;
-
-const ErrorMessage = styled(Text)`
-  background-color: #ff9c9c;
-  color: red;
-  padding: .2em .5em;
-  border-radius: .5em;
-  margin-bottom: .5em;
 `;
 
 export default Form;

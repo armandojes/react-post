@@ -1,26 +1,35 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Container from 'app/components/container';
 import styled from 'styled-components';
+import useForm from 'app/hooks/useForm';
 import Form from './components/form';
-import useForm from '../../hooks/useForm';
+import useErrorMessage from '../../hooks/useErrorMessage';
 
 const rules = {
-  email: (value) => (!value ? 'the email is incorrect' : false),
-  password: (value) => (!value ? 'the password is incorrect' : false),
+  email: (email) => (!email ? 'the email is incorrect' : false),
+  password: (password) => (!password ? 'the password is incorrect' : false),
 };
 
 function Login() {
-  const { handleErrorChange, handleInputChange, inputErrors, inputValues } = useForm();
-  const [errorMessage, setErrorMessage] = useState(null);
+  const { inputValues, inputsWithError, validate, removeInputError, updateFormValue } = useForm({ rules });
+  const { errorMessage, setErrorMessage } = useErrorMessage();
+
+  const handleClick = () => {
+    const { firstErrorMessage } = validate();
+    if (firstErrorMessage) {
+      setErrorMessage(firstErrorMessage);
+    }
+  };
 
   return (
     <ContainerStyled>
       <Form
-        onInputChange={handleInputChange}
-        errors={inputErrors}
-        values={inputValues}
         errorMessage={errorMessage}
+        onRemoveError={removeInputError}
+        onInputChange={updateFormValue}
+        onClick={handleClick}
+        inputsWithError={inputsWithError}
+        inputValues={inputValues}
       />
     </ContainerStyled>
   );
