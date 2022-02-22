@@ -8,7 +8,7 @@ function ErrorMessage({ message }) {
   return (
     <Collapse in={!!message}>
       <ErrorMessageStyled>
-        {message}
+        {message || ''}
       </ErrorMessageStyled>
     </Collapse>
 

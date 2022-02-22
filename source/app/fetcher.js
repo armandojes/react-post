@@ -12,6 +12,7 @@ import { apiUrl } from 'app/env';
  * @return {Promise<apiResponse>}
  */
 const fetcher = async (config) => {
+  console.log('fetcherConfig', config);
   try {
     const response = await axios({
       baseURL: apiUrl,

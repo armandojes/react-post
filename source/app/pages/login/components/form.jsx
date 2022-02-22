@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors } from 'app/theme/values';
 import TextFiled from 'app/components/TextFiled';
-import { func, object, string } from 'prop-types';
+import { func, object } from 'prop-types';
 import Spacer from 'app/components/spacer';
 import Text from 'app/components/text';
 import Button from 'app/components/button';
-import ErrorMessage from '../../../components/errorMessage';
+import { Collapse } from '@mui/material';
 
-function Form({ inputValues, onInputChange, onClick, inputsWithError, onRemoveError, errorMessage }) {
+function Form({ inputValues, onInputChange, onClick, inputsWithError, onRemoveError }) {
   const handleInputChange = (event) => {
     onInputChange(event.target.name, event.target.value);
   };
@@ -23,7 +23,6 @@ function Form({ inputValues, onInputChange, onClick, inputsWithError, onRemoveEr
     <FormElement>
       <Text size="1.2em" align="center">Iniciar session</Text>
       <Spacer height="2em" />
-      <ErrorMessage message={errorMessage} />
       <Text>Correo electrónico</Text>
       <TextFiled
         onFocus={handleInputFocus}
@@ -32,6 +31,9 @@ function Form({ inputValues, onInputChange, onClick, inputsWithError, onRemoveEr
         name="email"
         onChange={handleInputChange}
       />
+      <Collapse in={!!inputsWithError.email}>
+        <ErrorMessage>{inputsWithError.email}</ErrorMessage>
+      </Collapse>
       <Spacer height="1em" />
       <Text>contraseña</Text>
       <TextFiled
@@ -41,19 +43,16 @@ function Form({ inputValues, onInputChange, onClick, inputsWithError, onRemoveEr
         onChange={handleInputChange}
         name="password"
       />
-      <Spacer height="1.5em" />
-
-      <div>
-        <input onChange={(e) => console.log('firs', e)} name="gender" type="radio" value="male" /> male
-        <input onChange={(e) => console.log('second', e)} name="gender" type="radio" value="female" /> female
-      </div>
-
+      <Collapse in={!!inputsWithError.password}>
+        <ErrorMessage>{inputsWithError.password}</ErrorMessage>
+      </Collapse>
       <Spacer height="1.5em" />
       <Button
         textAlign="center"
         backgrounColor={colors.blueLight}
         textColor={colors.white}
         onClick={onClick}
+        textHoverColor={colors.white}
       >
         Iniciar session
       </Button>
@@ -68,7 +67,6 @@ Form.propTypes = {
   inputsWithError: object,
   onRemoveError: func,
   onInputChange: func,
-  errorMessage: string,
 };
 
 Form.defaultProps = {
@@ -77,7 +75,6 @@ Form.defaultProps = {
   onRemoveError: () => {},
   inputValues: {},
   inputsWithError: {},
-  errorMessage: null,
 };
 
 const FormElement = styled.div`
@@ -88,6 +85,11 @@ const FormElement = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
+`;
+
+const ErrorMessage = styled.div`
+  color: red;
+  margin-top: .3em;
 `;
 
 export default Form;

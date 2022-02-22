@@ -2,9 +2,9 @@ import fetcher from './fetcher';
 
 const api = {
   user: {
-    login({ email, password }) {
+    login(email, password) {
       return fetcher({
-        method: 'get',
+        method: 'post',
         url: '/user/login',
         data: { email, password },
       });

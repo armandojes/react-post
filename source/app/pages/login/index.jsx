@@ -1,36 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from 'app/components/container';
 import styled from 'styled-components';
 import useForm from 'app/hooks/useForm';
+import { CircularProgress } from '@mui/material';
+import { useSnackbar } from 'notistack';
+import { setSession } from 'app/redux/session';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import Form from './components/form';
-import useErrorMessage from '../../hooks/useErrorMessage';
+import objectValidator from '../../helpers/objectValidator';
+import api from '../../api';
 
-const rules = {
-  email: (email) => (!email ? 'the email is incorrect' : false),
-  password: (password) => (!password ? 'the password is incorrect' : false),
-};
+const formValidator = (values) => objectValidator(values, {
+  email: {
+    required: true,
+    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    length: { min: 5, max: 80 },
+    message: 'El correo no es válido',
+  },
+  password: {
+    required: true,
+    length: { min: 8, max: 50 },
+    message: 'La contraseña es inválida',
+  },
+});
 
 function Login() {
-  const { inputValues, inputsWithError, validate, removeInputError, updateFormValue } = useForm({ rules });
-  const { errorMessage, setErrorMessage } = useErrorMessage();
+  const { inputValues, inputsWithError, removeInputError, updateFormValue, setInputsWithErrors } = useForm();
+  const { enqueueSnackbar } = useSnackbar();
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleClick = () => {
-    const { firstErrorMessage } = validate();
-    if (firstErrorMessage) {
-      setErrorMessage(firstErrorMessage);
+  const handleClick = async () => {
+    const error = formValidator(inputValues);
+    if (error) {
+      setInputsWithErrors(error);
+    } else {
+      setLoading(true);
+      const response = await api.user.login(inputValues.email, inputValues.password);
+      if (response.error) {
+        setLoading(false);
+        enqueueSnackbar(response.errorMessage, { variant: 'error' });
+      } else {
+        enqueueSnackbar('Inicio de session exitoso', { variant: 'success' });
+        dispatch(setSession({ ...response.userData, token: response.token }));
+        setLoading(false);
+        navigate('/', { replace: true });
+      }
     }
   };
 
   return (
     <ContainerStyled>
-      <Form
-        errorMessage={errorMessage}
-        onRemoveError={removeInputError}
-        onInputChange={updateFormValue}
-        onClick={handleClick}
-        inputsWithError={inputsWithError}
-        inputValues={inputValues}
-      />
+      {!loading && (
+        <Form
+          onRemoveError={removeInputError}
+          onInputChange={updateFormValue}
+          onClick={handleClick}
+          inputsWithError={inputsWithError}
+          inputValues={inputValues}
+        />
+      )}
+      {loading && <CircularProgress />}
     </ContainerStyled>
   );
 }

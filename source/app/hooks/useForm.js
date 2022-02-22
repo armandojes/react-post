@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import deleteObjectNullProperties from 'app/helpers/deleteObjectNullProperties';
 
@@ -11,26 +10,9 @@ const useForm = (config = {}) => {
     setInputValues(deleteObjectNullProperties(newState));
   };
 
-  const validate = (scopedRules) => {
-    const rulesToApply = scopedRules || config.rules;
-    const initialErrors = {};
-    const errors = Object.keys(rulesToApply).reduce((accumulator, keyname) => {
-      const currentValidator = rulesToApply[keyname];
-      const currentValue = inputValues[keyname];
-      const currentError = currentValidator(currentValue);
-      return currentError ? { ...accumulator, [keyname]: currentError } : accumulator;
-    }, initialErrors);
-    setInputsWithErrors(deleteObjectNullProperties(errors));
-    return {
-      hasError: initialErrors === errors,
-      firstErrorMessage: Object.values(errors)[0] || null,
-      inputsWithError: errors,
-    };
-  };
-
-  const removeInputError = (errorName) => {
+  const removeInputError = (inputName) => {
     const newInputErrors = { ...inputsWithError };
-    delete newInputErrors[errorName];
+    delete newInputErrors[inputName];
     setInputsWithErrors(newInputErrors);
   };
 
@@ -38,8 +20,8 @@ const useForm = (config = {}) => {
     inputValues,
     inputsWithError,
     updateFormValue,
-    validate,
     removeInputError,
+    setInputsWithErrors,
   };
 };
 
