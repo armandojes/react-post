@@ -1,17 +1,12 @@
 import React from 'react';
-import Container from '../../components/container';
 import Cover from './components/cover';
-import PostsList from './components/postsList';
-import SearchBar from './components/searchbar';
+import Main from './components/posts';
 
 function Home() {
   return (
     <>
       <Cover />
-      <Container>
-        <SearchBar />
-        <PostsList />
-      </Container>
+      <Main />
     </>
   );
 }

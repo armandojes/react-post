@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import useForm from 'app/hooks/useForm';
 import { CircularProgress } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { setSession } from 'app/redux/session';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Form from './components/form';
 import objectValidator from '../../helpers/objectValidator';
@@ -29,7 +27,6 @@ function Login() {
   const { inputValues, inputsWithError, removeInputError, updateFormValue, setInputsWithErrors } = useForm();
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleClick = async () => {
@@ -44,7 +41,6 @@ function Login() {
         enqueueSnackbar(response.errorMessage, { variant: 'error' });
       } else {
         enqueueSnackbar('Inicio de session exitoso', { variant: 'success' });
-        dispatch(setSession({ ...response.userData, token: response.token }));
         setLoading(false);
         navigate('/', { replace: true });
       }

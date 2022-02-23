@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import logoSrc from 'app/assets/logo.png';
 import { Link } from 'react-router-dom';
 import { Menu } from '@mui/icons-material';
+import logo from 'app/assets/logo.png';
 import Container from '../container';
 import Text from '../text';
 import Responsive from '../hide';
@@ -17,7 +17,7 @@ function Header() {
 
           <Responsive rule="min-width:601px">
             <LeftSection>
-              <Logo src={logoSrc} />
+              <Logo src={logo} />
               <MenuWrapper>
                 <MenuItem to="/">
                   <Text color={colors.white}>Inicio</Text>

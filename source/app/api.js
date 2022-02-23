@@ -1,12 +1,20 @@
 import fetcher from './fetcher';
 
 const api = {
-  user: {
+  users: {
     login(email, password) {
       return fetcher({
         method: 'post',
-        url: '/user/login',
+        url: '/users/login',
         data: { email, password },
+      });
+    },
+  },
+  posts: {
+    getAll() {
+      return fetcher({
+        method: 'get',
+        url: '/posts',
       });
     },
   },

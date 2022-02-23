@@ -1,18 +1,15 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import Text from 'app/components/text';
-import { colors } from '../../../theme/values';
+import { colors } from 'app/theme/values';
 
-function Post() {
+function Post({ title, body }) {
   return (
     <Wrapper>
       <Date>Febrero 09, 2022</Date>
-      <Text size="1.3em" bold>hola react</Text>
-      <PostBody>
-        Aunque parece algo muy difícil, gestionar la procrastinación es posible.
-        Debes reconocer las razones por las cuales estás postergando algo.
-        Puede ser incluso por miedo a no poder culminar una tarea o alcanzar un objetivo.s
-      </PostBody>
+      <Text size="1.3em" bold>{title}</Text>
+      <PostBody>{body}</PostBody>
       <TagsWrapper>
         <Tag>React</Tag>
         <Tag>Redux</Tag>
@@ -22,6 +19,11 @@ function Post() {
     </Wrapper>
   );
 }
+
+Post.propTypes = {
+  body: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 const Wrapper = styled.div`
   cursor: pointer;

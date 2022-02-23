@@ -1,7 +1,8 @@
-import { object, string, element, oneOfType, array } from 'prop-types';
+import { string, element, oneOfType, array } from 'prop-types';
 import React from 'react';
 
-function Markup({ content, reduxState, styleElement }) {
+function Markup({ content, styleElement, statesScript }) {
+  console.log(statesScript);
   return (
     <html lang="es" charSet="utf-8">
       <head>
@@ -14,7 +15,7 @@ function Markup({ content, reduxState, styleElement }) {
       </head>
       <body>
         <div id="render_target" dangerouslySetInnerHTML={{ __html: content }} />
-        <script dangerouslySetInnerHTML={{ __html: `window.reduxState = ${JSON.stringify(reduxState)}` }} />
+        <script dangerouslySetInnerHTML={{ __html: statesScript }} type="application/json" />
         <script src={`${publicPath}app.js`} />
       </body>
     </html>
@@ -23,8 +24,8 @@ function Markup({ content, reduxState, styleElement }) {
 
 Markup.propTypes = {
   content: string.isRequired,
-  reduxState: object.isRequired,
   styleElement: oneOfType([element, array]).isRequired,
+  statesScript: string.isRequired,
 };
 
 export default Markup;
