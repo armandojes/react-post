@@ -2,7 +2,7 @@ import React from 'react';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
-import reactFetch from 'react-fetch-ssr';
+import renderToStringAsync from 'app/react-fetch-ssr/renderToStringAsync';
 import Markup from './markup';
 import App from '../app';
 
@@ -10,7 +10,7 @@ const render = async (request) => {
   try {
     const sheet = new ServerStyleSheet();
 
-    const { content, states } = await reactFetch.renderToStringAsync(
+    const content = await renderToStringAsync(
       <StyleSheetManager sheet={sheet.instance}>
         <StaticRouter location={request.url}>
           <App />
@@ -21,7 +21,7 @@ const render = async (request) => {
     const styleElement = sheet.getStyleElement();
 
     const fullHtml = renderToStaticMarkup(
-      <Markup content={content} styleElement={styleElement} statesScript={states} />,
+      <Markup content={content} styleElement={styleElement} />,
     );
 
     return fullHtml;
