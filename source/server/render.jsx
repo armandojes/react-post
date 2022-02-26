@@ -10,7 +10,7 @@ const render = async (request) => {
   try {
     const sheet = new ServerStyleSheet();
 
-    const content = await renderToStringAsync(
+    const { content, syncServerStates } = await renderToStringAsync(
       <StyleSheetManager sheet={sheet.instance}>
         <StaticRouter location={request.url}>
           <App />
@@ -21,7 +21,7 @@ const render = async (request) => {
     const styleElement = sheet.getStyleElement();
 
     const fullHtml = renderToStaticMarkup(
-      <Markup content={content} styleElement={styleElement} />,
+      <Markup content={content} styleElement={styleElement} syncServerStates={syncServerStates} />,
     );
 
     return fullHtml;

@@ -5,18 +5,15 @@ import createServerStates from './createServerStates';
 import { RegisterStateProvider } from './registerStateContext';
 import { RegisterFetchProvider } from './registerFetchsContext';
 
-const renderToStringAsync = async (app) => {
-  const { registerState, getState, setCollectingMode } = createServerStates();
-  const { registerFetch, getFetchs, executeAll } = createServerFetchs();
-
-  console.log('febodreState', getState());
-  console.log('febodrefetchs', getFetchs());
+const renderToStringAsync = async (reactElement) => {
+  const { registerState, setCollectingMode, getState } = createServerStates();
+  const { registerFetch, executeAll } = createServerFetchs();
 
   function AppEnhanced() {
     return (
       <RegisterStateProvider value={registerState}>
         <RegisterFetchProvider value={registerFetch}>
-          {app}
+          {reactElement}
         </RegisterFetchProvider>
       </RegisterStateProvider>
     );
@@ -27,11 +24,11 @@ const renderToStringAsync = async (app) => {
   await executeAll();
 
   const content = renderToString(<AppEnhanced />);
+  const serverStates = getState();
 
-  console.log('afterState', getState());
-  console.log('afterFetchs', getFetchs());
+  const syncServerStates = `window.__SERVER__STATES__ = ${JSON.stringify(serverStates)}`;
 
-  return content;
+  return { content, syncServerStates };
 };
 
 export default renderToStringAsync;

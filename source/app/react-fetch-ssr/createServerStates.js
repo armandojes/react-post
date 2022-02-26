@@ -15,7 +15,7 @@ const createServerStates = () => {
         : newState;
     };
 
-    return [states[key], updater];
+    return [states[key] || initialState, updater];
   };
 
   const getState = () => states;

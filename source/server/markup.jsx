@@ -1,7 +1,7 @@
-import { string, element, oneOfType, array } from 'prop-types';
+import { string, element, oneOfType, array, object } from 'prop-types';
 import React from 'react';
 
-function Markup({ content, styleElement }) {
+function Markup({ content, styleElement, syncServerStates }) {
   return (
     <html lang="es" charSet="utf-8">
       <head>
@@ -14,6 +14,7 @@ function Markup({ content, styleElement }) {
       </head>
       <body>
         <div id="render_target" dangerouslySetInnerHTML={{ __html: content }} />
+        <script dangerouslySetInnerHTML={{ __html: syncServerStates }} />
         <script src={`${publicPath}app.js`} />
       </body>
     </html>
@@ -23,6 +24,7 @@ function Markup({ content, styleElement }) {
 Markup.propTypes = {
   content: string.isRequired,
   styleElement: oneOfType([element, array]).isRequired,
+  syncServerStates: object.isRequired,
 };
 
 export default Markup;
