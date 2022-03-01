@@ -1,8 +1,8 @@
-import React, { StrictMode } from 'react';
-import { hydrate } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import React, { StrictMode } from "react";
+import { hydrate } from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
-import App from './app';
+import App from "./app";
 
 hydrate(
   <StrictMode>
@@ -10,5 +10,5 @@ hydrate(
       <App />
     </BrowserRouter>
   </StrictMode>,
-  document.getElementById('render_target'),
+  document.getElementById("render_target")
 );

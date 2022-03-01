@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
-import { useState } from 'react';
-import isDom from './isDom';
-import { useRegisterState } from './registerStateContext';
+import { useState } from "react";
+import isDom from "./isDom";
+import { useRegisterState } from "./registerStateContext";
 
-const useIsomorphicState = (initialState, key) => {
+const useIsomorphicState = (key, initialState) => {
   if (isDom) {
     const serverStates = window.__SERVER__STATES__ || {};
     const stateByServer = serverStates[key];

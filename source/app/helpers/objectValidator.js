@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import Validate, { SchemaDefinition } from 'validate';
+import Validate, { SchemaDefinition } from "validate";
 
 /**
  * validate object
@@ -12,10 +12,13 @@ const objectValidator = (data = {}, schemaDefinition = {}) => {
 
   if (!errors.length) return null;
 
-  return errors.reduce((accumulator, currentError) => ({
-    ...accumulator,
-    [currentError.path]: currentError.message,
-  }), {});
+  return errors.reduce(
+    (accumulator, currentError) => ({
+      ...accumulator,
+      [currentError.path]: currentError.message,
+    }),
+    {}
+  );
 };
 
 export default objectValidator;

@@ -8,7 +8,7 @@
  */
 export function setCookie(cookieName, cookieValue, expdays) {
   const date = new Date();
-  date.setTime(date.getTime() + (expdays * 24 * 60 * 60 * 1000));
+  date.setTime(date.getTime() + expdays * 24 * 60 * 60 * 1000);
   const expires = `expires=${date.toUTCString()}`;
   document.cookie = `${cookieName}=${cookieValue}; ${expires}`;
 }

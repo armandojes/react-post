@@ -1,9 +1,9 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import createServerFetchs from './createServerFetchs';
-import createServerStates from './createServerStates';
-import { RegisterStateProvider } from './registerStateContext';
-import { RegisterFetchProvider } from './registerFetchsContext';
+import React from "react";
+import { renderToString } from "react-dom/server";
+import createServerFetchs from "./createServerFetchs";
+import createServerStates from "./createServerStates";
+import { RegisterStateProvider } from "./registerStateContext";
+import { RegisterFetchProvider } from "./registerFetchsContext";
 
 const renderToStringAsync = async (reactElement) => {
   const { registerState, setCollectingMode, getState } = createServerStates();
@@ -26,7 +26,9 @@ const renderToStringAsync = async (reactElement) => {
   const content = renderToString(<AppEnhanced />);
   const serverStates = getState();
 
-  const syncServerStates = `window.__SERVER__STATES__ = ${JSON.stringify(serverStates)}`;
+  const syncServerStates = `window.__SERVER__STATES__ = ${JSON.stringify(
+    serverStates
+  )}`;
 
   return { content, syncServerStates };
 };

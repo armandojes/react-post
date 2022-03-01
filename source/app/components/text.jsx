@@ -1,10 +1,25 @@
-import { bool, string } from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
+import { bool, string } from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
-function Text({ children, bold, size, color, align, className, ...otherProps }) {
+function Text({
+  children,
+  bold,
+  size,
+  color,
+  align,
+  className,
+  ...otherProps
+}) {
   return (
-    <TextStyled $bold={bold} $size={size} $color={color} $align={align} className={className} {...otherProps}>
+    <TextStyled
+      $bold={bold}
+      $size={size}
+      $color={color}
+      $align={align}
+      className={className}
+      {...otherProps}
+    >
       {children}
     </TextStyled>
   );
@@ -12,10 +27,10 @@ function Text({ children, bold, size, color, align, className, ...otherProps }) 
 
 Text.defaultProps = {
   bold: false,
-  size: '1em',
-  color: '#000',
-  align: 'left',
-  className: '',
+  size: "1em",
+  color: "#000",
+  align: "left",
+  className: "",
 };
 
 Text.propTypes = {
@@ -28,8 +43,8 @@ Text.propTypes = {
 };
 
 const TextStyled = styled.div`
-  font-weight: ${(props) => (props.$bold ? 'bold' : 'normal')};
-  font-size: ${(props) => (props.$size)};
+  font-weight: ${(props) => (props.$bold ? "bold" : "normal")};
+  font-size: ${(props) => props.$size};
   color: ${(props) => props.$color};
   text-align: ${(props) => props.$align};
   line-height: 1.5em;

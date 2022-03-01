@@ -1,13 +1,9 @@
-import styled from 'styled-components';
-import { element, number, oneOfType, string } from 'prop-types';
-import React from 'react';
+import styled from "styled-components";
+import { element, number, oneOfType, string } from "prop-types";
+import React from "react";
 
 function Responsive({ children, rule }) {
-  return (
-    <ResponsiveWrapper $rule={rule}>
-      {children}
-    </ResponsiveWrapper>
-  );
+  return <ResponsiveWrapper $rule={rule}>{children}</ResponsiveWrapper>;
 }
 
 Responsive.propTypes = {

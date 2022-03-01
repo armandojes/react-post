@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import React from 'react';
-import TextField from 'app/components/TextFiled';
-import { colors } from 'app/theme/values';
-import { Search } from '@mui/icons-material';
+import styled from "styled-components";
+import React from "react";
+import TextField from "app/components/TextFiled";
+import { colors } from "app/theme/values";
+import { Search } from "@mui/icons-material";
 
 function SearchBar() {
   return (
@@ -28,8 +28,8 @@ const InputWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 40%;
-  @media screen and (max-width:600px) {
-    width: 100%
+  @media screen and (max-width: 600px) {
+    width: 100%;
   }
 `;
 
@@ -38,7 +38,7 @@ const SearchButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0em .5em;
+  padding: 0em 0.5em;
   cursor: pointer;
   svg {
     color: #fff;
@@ -48,7 +48,7 @@ const SearchButton = styled.div`
 
 const TextFieldStyled = styled(TextField)`
   width: 100%;
-  border-radius: .3em .0em 0em .3em;
+  border-radius: 0.3em 0em 0em 0.3em;
   border-color: ${colors.blueLight};
 `;
 

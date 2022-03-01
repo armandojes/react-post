@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext } from "react";
 
 const context = createContext({});
 
@@ -10,10 +10,7 @@ const { Provider } = context;
  */
 const useServerParams = () => useContext(context);
 
-export {
-  useServerParams,
-  Provider,
-};
+export { useServerParams, Provider };
 
 export default {
   useServerParams,

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import axios, { AxiosRequestConfig } from 'axios';
-import { apiUrl } from 'app/env';
+import axios, { AxiosRequestConfig } from "axios";
+import { apiUrl } from "app/env";
 
 /**
  * @typedef {Object} apiResponse

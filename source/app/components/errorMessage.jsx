@@ -1,17 +1,14 @@
-import styled from 'styled-components';
-import { string } from 'prop-types';
-import React from 'react';
-import { Collapse } from '@mui/material';
-import Text from './text';
+import styled from "styled-components";
+import { string } from "prop-types";
+import React from "react";
+import { Collapse } from "@mui/material";
+import Text from "./text";
 
 function ErrorMessage({ message }) {
   return (
     <Collapse in={!!message}>
-      <ErrorMessageStyled>
-        {message || ''}
-      </ErrorMessageStyled>
+      <ErrorMessageStyled>{message || ""}</ErrorMessageStyled>
     </Collapse>
-
   );
 }
 
@@ -26,9 +23,9 @@ ErrorMessage.defaultProps = {
 const ErrorMessageStyled = styled(Text)`
   background-color: #ff9c9cb0;
   color: #f13636;
-  padding: .2em .5em;
-  border-radius: .5em;
-  margin-bottom: .5em;
+  padding: 0.2em 0.5em;
+  border-radius: 0.5em;
+  margin-bottom: 0.5em;
 `;
 
 export default ErrorMessage;

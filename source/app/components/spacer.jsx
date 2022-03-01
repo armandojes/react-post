@@ -1,14 +1,9 @@
-import { string } from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
+import { string } from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
 function Spacer({ width, height }) {
-  return (
-    <SpacerStyled
-      $width={width}
-      $height={height}
-    />
-  );
+  return <SpacerStyled $width={width} $height={height} />;
 }
 
 Spacer.propTypes = {
@@ -17,8 +12,8 @@ Spacer.propTypes = {
 };
 
 Spacer.defaultProps = {
-  width: 'initial',
-  height: 'initial',
+  width: "initial",
+  height: "initial",
 };
 
 const SpacerStyled = styled.div`

@@ -1,6 +1,6 @@
-import React from 'react';
-import Cover from './components/cover';
-import Main from './components/posts';
+import React from "react";
+import Cover from "./components/cover";
+import Main from "./components/posts";
 
 function Home() {
   return (

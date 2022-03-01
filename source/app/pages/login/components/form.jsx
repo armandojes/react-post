@@ -1,14 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
-import { colors } from 'app/theme/values';
-import TextFiled from 'app/components/TextFiled';
-import { func, object } from 'prop-types';
-import Spacer from 'app/components/spacer';
-import Text from 'app/components/text';
-import Button from 'app/components/button';
-import { Collapse } from '@mui/material';
+import React from "react";
+import styled from "styled-components";
+import { colors } from "app/theme/values";
+import TextFiled from "app/components/TextFiled";
+import { func, object } from "prop-types";
+import Spacer from "app/components/spacer";
+import Text from "app/components/text";
+import Button from "app/components/button";
+import { Collapse } from "@mui/material";
 
-function Form({ inputValues, onInputChange, onClick, inputsWithError, onRemoveError }) {
+function Form({
+  inputValues,
+  onInputChange,
+  onClick,
+  inputsWithError,
+  onRemoveError,
+}) {
   const handleInputChange = (event) => {
     onInputChange(event.target.name, event.target.value);
   };
@@ -21,13 +27,15 @@ function Form({ inputValues, onInputChange, onClick, inputsWithError, onRemoveEr
 
   return (
     <FormElement>
-      <Text size="1.2em" align="center">Iniciar session</Text>
+      <Text size="1.2em" align="center">
+        Iniciar session
+      </Text>
       <Spacer height="2em" />
       <Text>Correo electrónico</Text>
       <TextFiled
         onFocus={handleInputFocus}
         error={!!inputsWithError.email}
-        value={inputValues.email || ''}
+        value={inputValues.email || ""}
         name="email"
         onChange={handleInputChange}
       />
@@ -39,7 +47,7 @@ function Form({ inputValues, onInputChange, onClick, inputsWithError, onRemoveEr
       <TextFiled
         onFocus={handleInputFocus}
         error={!!inputsWithError.password}
-        value={inputValues.password || ''}
+        value={inputValues.password || ""}
         onChange={handleInputChange}
         name="password"
       />
@@ -81,7 +89,7 @@ const FormElement = styled.div`
   padding: 2em;
   border: 1px solid ${colors.gray};
   box-shadow: 5px 5px 10px ${colors.gray};
-  border-radius: .5em;
+  border-radius: 0.5em;
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -89,7 +97,7 @@ const FormElement = styled.div`
 
 const ErrorMessage = styled.div`
   color: red;
-  margin-top: .3em;
+  margin-top: 0.3em;
 `;
 
 export default Form;
