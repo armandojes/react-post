@@ -12,3 +12,7 @@ export function setCookie(cookieName, cookieValue, expdays) {
   const expires = `expires=${date.toUTCString()}`;
   document.cookie = `${cookieName}=${cookieValue}; ${expires}`;
 }
+
+export const deleteCookie = (cookieName) => {
+  document.cookie = `${cookieName}=""; max-age=0`;
+};

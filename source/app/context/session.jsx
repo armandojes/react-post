@@ -1,13 +1,16 @@
 import { element } from 'prop-types';
-import React, { createContext, useContext, useMemo, useState } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import { deleteCookie, setCookie } from '../helpers/cookie';
+import useIsomorphicState from '../react-fetch-ssr/useIsomorphicState';
+import { useServerParams } from './serverParams';
 
 const sessionContext = createContext({ session: {}, setSession: () => {} });
 
 const useSession = () => useContext(sessionContext);
 
 function SessionProvider({ children }) {
-  const [state, setState] = useState(null);
+  const serverParams = useServerParams();
+  const [state, setState] = useIsomorphicState(serverParams.session || null, 'sessionContext');
 
   const handleSetSession = (newState) => {
     setState(newState);

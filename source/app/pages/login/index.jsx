@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router';
 import Form from './components/form';
 import objectValidator from '../../helpers/objectValidator';
 import api from '../../api';
+import { useSession } from '../../context/session';
 
 const formValidator = (values) => objectValidator(values, {
   email: {
@@ -28,6 +29,7 @@ function Login() {
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { setSession } = useSession();
 
   const handleClick = async () => {
     const error = formValidator(inputValues);
@@ -35,12 +37,13 @@ function Login() {
       setInputsWithErrors(error);
     } else {
       setLoading(true);
-      const response = await api.user.login(inputValues.email, inputValues.password);
+      const response = await api.users.login(inputValues.email, inputValues.password);
       if (response.error) {
         setLoading(false);
         enqueueSnackbar(response.errorMessage, { variant: 'error' });
       } else {
         enqueueSnackbar('Inicio de session exitoso', { variant: 'success' });
+        setSession({ token: response.token, ...response.userData });
         setLoading(false);
         navigate('/', { replace: true });
       }

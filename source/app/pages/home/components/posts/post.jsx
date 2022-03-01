@@ -1,15 +1,18 @@
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import Text from 'app/components/text';
 import { colors } from 'app/theme/values';
+import { Link } from 'react-router-dom';
 
-function Post({ title, body }) {
+function Post({ title, summary, url }) {
   return (
     <Wrapper>
       <Date>Febrero 09, 2022</Date>
-      <Text size="1.3em" bold>{title}</Text>
-      <PostBody>{body}</PostBody>
+      <Link to={`/post/${url}`}>
+        <Text size="1.3em" bold>{title}</Text>
+      </Link>
+      <PostBody>{summary}</PostBody>
       <TagsWrapper>
         <Tag>React</Tag>
         <Tag>Redux</Tag>
@@ -21,8 +24,9 @@ function Post({ title, body }) {
 }
 
 Post.propTypes = {
-  body: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  url: string.isRequired,
 };
 
 const Wrapper = styled.div`

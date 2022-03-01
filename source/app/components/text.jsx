@@ -2,9 +2,9 @@ import { bool, string } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-function Text({ children, bold, size, color, align, className }) {
+function Text({ children, bold, size, color, align, className, ...otherProps }) {
   return (
-    <TextStyled $bold={bold} $size={size} $color={color} $align={align} className={className}>
+    <TextStyled $bold={bold} $size={size} $color={color} $align={align} className={className} {...otherProps}>
       {children}
     </TextStyled>
   );

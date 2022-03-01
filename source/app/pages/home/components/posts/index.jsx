@@ -1,28 +1,29 @@
 import React from 'react';
 import Container from 'app/components/container';
-import SearchBar from './searchbar';
+import useIsomorphicState from 'app/react-fetch-ssr/useIsomorphicState';
+import useIsomorphicFetch from 'app/react-fetch-ssr/useIsomorphicFetch';
+import api from 'app/api';
 import Post from './post';
-import useIsomorphicState from '../../../../react-fetch-ssr/useIsomorphicState';
-import useIsomorphicFetch from '../../../../react-fetch-ssr/useIsomorphicFetch';
-import api from '../../../../api';
+import SearchBar from './searchbar';
 
 function Posts() {
-  const [state, setState] = useIsomorphicState([], 'postslist');
+  const [posts, setPosts] = useIsomorphicState([], 'postslist');
 
   useIsomorphicFetch(async () => {
     const response = await api.posts.getAll();
-    setState(response.posts);
+    setPosts(response.posts);
   });
 
   return (
     <Container>
       <SearchBar />
 
-      {state.map((s) => (
+      {posts.map((currentPost) => (
         <Post
-          key={s.id}
-          title="an amazing post about react js"
-          body="he defaultValue argument is only used when a component does not have a matching Provider above it in the tree. This default value can be helpful for testing components in"
+          key={currentPost.id}
+          title={currentPost.title}
+          summary={currentPost.summary}
+          url={currentPost.url}
         />
       ))}
     </Container>

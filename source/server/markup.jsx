@@ -1,4 +1,4 @@
-import { string, element, oneOfType, array, object } from 'prop-types';
+import { string, element, oneOfType, array } from 'prop-types';
 import React from 'react';
 
 function Markup({ content, styleElement, syncServerStates }) {
@@ -24,7 +24,7 @@ function Markup({ content, styleElement, syncServerStates }) {
 Markup.propTypes = {
   content: string.isRequired,
   styleElement: oneOfType([element, array]).isRequired,
-  syncServerStates: object.isRequired,
+  syncServerStates: string.isRequired,
 };
 
 export default Markup;
