@@ -9,6 +9,7 @@ import { SnackbarProvider } from 'notistack';
 import { SessionProvider } from 'app/context/session';
 import Header from './components/header';
 import PostDetail from './pages/postDetail';
+import 'highlight.js/styles/github.css';
 
 function App() {
   return (

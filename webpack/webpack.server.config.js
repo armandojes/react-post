@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const ip = require('ip');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const publicPath = `http://${ip.address()}:8080/`;
 const ENV = process.env.NODE_ENV;
@@ -16,11 +17,16 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: '/(node_modules)/',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
+          plugins: [['babel-plugin-styled-components']],
         },
       },
       {
@@ -33,6 +39,7 @@ const config = {
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({ filename: 'styles.css' }),
     new webpack.DefinePlugin({
       publicPath: JSON.stringify(publicPath),
       ENV: JSON.stringify(process.env.NODE_ENV),

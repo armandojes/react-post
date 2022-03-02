@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ip = require('ip');
 
 const publicPath = `http://${ip.address()}:8080/`;
@@ -17,12 +18,16 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.css/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: '/(node_modules)/',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
-          plugins: [require.resolve('react-refresh/babel')],
+          plugins: [require.resolve('react-refresh/babel'), ['babel-plugin-styled-components']],
         },
       },
       {
@@ -36,6 +41,7 @@ const config = {
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({ filename: 'styles.css' }),
     new ReactRefreshWebpackPlugin(),
     new webpack.DefinePlugin({
       publicPath: JSON.stringify(publicPath),
