@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import { string } from "prop-types";
-import React from "react";
-import { Collapse } from "@mui/material";
-import Text from "./text";
+import styled from 'styled-components';
+import { string } from 'prop-types';
+import React from 'react';
+import { Collapse } from '@mui/material';
+import Text from './text';
 
 function ErrorMessage({ message }) {
   return (
     <Collapse in={!!message}>
-      <ErrorMessageStyled>{message || ""}</ErrorMessageStyled>
+      <ErrorMessageStyled>{message || ''}</ErrorMessageStyled>
     </Collapse>
   );
 }

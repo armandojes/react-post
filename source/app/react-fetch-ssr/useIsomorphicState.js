@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-import { useState } from "react";
-import isDom from "./isDom";
-import { useRegisterState } from "./registerStateContext";
+import { useState } from 'react';
+import isDom from './isDom';
+import { useRegisterState } from './registerStateContext';
 
 const useIsomorphicState = (key, initialState) => {
   if (isDom) {

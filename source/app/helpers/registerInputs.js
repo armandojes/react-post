@@ -1,4 +1,4 @@
-const registerInputs = (inputName = "", values = {}, errors = {}) => {
+const registerInputs = (inputName = '', values = {}, errors = {}) => {
   const handleChange = (event) => {};
 
   return {

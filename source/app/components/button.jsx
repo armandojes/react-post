@@ -1,7 +1,7 @@
-import { element, number, oneOfType, string } from "prop-types";
-import React from "react";
-import styled from "styled-components";
-import { colors } from "../theme/values";
+import { element, number, oneOfType, string } from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+import { colors } from '../theme/values';
 
 function Button({
   children,
@@ -39,12 +39,12 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  className: "",
-  textAlign: "left",
+  className: '',
+  textAlign: 'left',
   backgrounColor: colors.grayLight,
-  backgrounHoverColor: "initial",
-  textColor: "initial",
-  textHoverColor: "initial",
+  backgrounHoverColor: 'initial',
+  textColor: 'initial',
+  textHoverColor: 'initial',
 };
 
 const ButtonStyled = styled.button`

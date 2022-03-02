@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import React from "react";
-import TextField from "app/components/TextFiled";
-import { colors } from "app/theme/values";
-import { Search } from "@mui/icons-material";
+import styled from 'styled-components';
+import React from 'react';
+import TextField from 'app/components/TextFiled';
+import { colors } from 'app/theme/values';
+import { Search } from '@mui/icons-material';
 
 function SearchBar() {
   return (

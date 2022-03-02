@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import Text from "app/components/text";
-import Spacer from "app/components/spacer";
-import { colors } from "app/theme/values";
+import React from 'react';
+import styled from 'styled-components';
+import Text from 'app/components/text';
+import Spacer from 'app/components/spacer';
+import { colors } from 'app/theme/values';
 
 function Cover() {
   return (

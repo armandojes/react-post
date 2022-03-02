@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { Menu } from "@mui/icons-material";
-import logo from "app/assets/logo.png";
-import Container from "../container";
-import Text from "../text";
-import Responsive from "../hide";
-import { colors } from "../../theme/values";
-import ToogleMode from "./components/toogleMode";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { Menu } from '@mui/icons-material';
+import logo from 'app/assets/logo.png';
+import Container from '../container';
+import Text from '../text';
+import Responsive from '../hide';
+import { colors } from '../../theme/values';
+import ToogleMode from './components/toogleMode';
 
 function Header() {
   return (

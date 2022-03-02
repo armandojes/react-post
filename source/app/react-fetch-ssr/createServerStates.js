@@ -10,8 +10,7 @@ const createServerStates = () => {
 
     // state updater
     const updater = (newState) => {
-      states[key] =
-        typeof newState === "function" ? newState(states[key]) : newState;
+      states[key] = typeof newState === 'function' ? newState(states[key]) : newState;
     };
 
     return [states[key] || initialState, updater];

@@ -1,11 +1,11 @@
-import fetcher from "./fetcher";
+import fetcher from './fetcher';
 
 const api = {
   users: {
     login(email, password) {
       return fetcher({
-        method: "post",
-        url: "/users/login",
+        method: 'post',
+        url: '/users/login',
         data: { email, password },
       });
     },
@@ -13,13 +13,13 @@ const api = {
   posts: {
     getAll() {
       return fetcher({
-        method: "get",
-        url: "/posts",
+        method: 'get',
+        url: '/posts',
       });
     },
     getByUrl(postUrl) {
       return fetcher({
-        method: "get",
+        method: 'get',
         url: `/posts/${postUrl}`,
       });
     },

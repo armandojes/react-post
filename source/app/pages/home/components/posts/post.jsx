@@ -1,9 +1,9 @@
-import PropTypes, { string } from "prop-types";
-import React from "react";
-import styled from "styled-components";
-import Text from "app/components/text";
-import { colors } from "app/theme/values";
-import { Link } from "react-router-dom";
+import PropTypes, { string } from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+import Text from 'app/components/text';
+import { colors } from 'app/theme/values';
+import { Link } from 'react-router-dom';
 
 function Post({ title, summary, url }) {
   return (

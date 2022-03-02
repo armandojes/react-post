@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import isDom from "./isDom";
-import { useRegisterFetch } from "./registerFetchsContext";
+import { useEffect } from 'react';
+import isDom from './isDom';
+import { useRegisterFetch } from './registerFetchsContext';
 
 const useIsomorphicFetch = (handler, deps = []) => {
   if (isDom) {

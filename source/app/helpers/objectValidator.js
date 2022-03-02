@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import Validate, { SchemaDefinition } from "validate";
+import Validate, { SchemaDefinition } from 'validate';
 
 /**
  * validate object

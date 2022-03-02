@@ -1,6 +1,6 @@
-import { element, string } from "prop-types";
-import React from "react";
-import styled from "styled-components";
+import { element, string } from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 
 function InputWrapper({ children, endIcon, className }) {
   return (
@@ -19,7 +19,7 @@ InputWrapper.propTypes = {
 
 InputWrapper.defaultProps = {
   endIcon: null,
-  className: "",
+  className: '',
 };
 
 // styled

@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 const useTheme = () => {
   const themeSelected = useSelector((state) => state.theme);

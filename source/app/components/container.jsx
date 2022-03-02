@@ -1,13 +1,10 @@
-import { array, bool, element, oneOfType, string } from "prop-types";
-import React from "react";
-import styled from "styled-components";
+import { array, bool, element, oneOfType, string } from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 
 function Container({ children, disabledVerticalPadding, className }) {
   return (
-    <Wrapper
-      $disabledVerticalPadding={disabledVerticalPadding}
-      className={className}
-    >
+    <Wrapper $disabledVerticalPadding={disabledVerticalPadding} className={className}>
       {children}
     </Wrapper>
   );
@@ -16,7 +13,7 @@ function Container({ children, disabledVerticalPadding, className }) {
 const Wrapper = styled.div`
   max-width: 1080px;
   margin: auto;
-  padding: ${(props) => (props.$disabledVerticalPadding ? "0px .5em" : ".5em")};
+  padding: ${(props) => (props.$disabledVerticalPadding ? '0px .5em' : '.5em')};
 `;
 
 Container.propTypes = {
@@ -27,7 +24,7 @@ Container.propTypes = {
 
 Container.defaultProps = {
   disabledVerticalPadding: false,
-  className: "",
+  className: '',
 };
 
 export default Container;

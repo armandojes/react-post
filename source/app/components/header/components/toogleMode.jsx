@@ -1,23 +1,23 @@
-import { DarkMode, LightMode } from "@mui/icons-material";
-import React from "react";
-import styled from "styled-components";
-import { colors } from "app/theme/values";
-import Spacer from "app/components/spacer";
-import Text from "app/components/text";
+import { DarkMode, LightMode } from '@mui/icons-material';
+import React from 'react';
+import styled from 'styled-components';
+import { colors } from 'app/theme/values';
+import Spacer from 'app/components/spacer';
+import Text from 'app/components/text';
 
 function ToogleMode() {
-  const theme = "light";
+  const theme = 'light';
 
   return (
     <Wrapper>
-      {theme === "light" && (
+      {theme === 'light' && (
         <>
           <Icon as={LightMode} />
           <Spacer width="1em" />
           <Text color={colors.white}>Light</Text>
         </>
       )}
-      {theme === "dark" && (
+      {theme === 'dark' && (
         <>
           <Icon as={DarkMode} />
           <Spacer width="1em" />

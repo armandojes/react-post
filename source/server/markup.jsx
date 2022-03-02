@@ -1,5 +1,5 @@
-import { string, element, oneOfType, array } from "prop-types";
-import React from "react";
+import { string, element, oneOfType, array } from 'prop-types';
+import React from 'react';
 
 function Markup({ content, styleElement, syncServerStates }) {
   return (

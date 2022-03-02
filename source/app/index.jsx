@@ -1,14 +1,14 @@
-import React from "react";
-import { Routes, Route } from "react-router";
-import { Normalize } from "styled-normalize";
-import GlobalStyle from "app/GlobalStyle";
-import { StylesProvider } from "@mui/styles";
-import Home from "app/pages/home";
-import Login from "app/pages/login";
-import { SnackbarProvider } from "notistack";
-import { SessionProvider } from "app/context/session";
-import Header from "./components/header";
-import PostDetail from "./pages/postDetail";
+import React from 'react';
+import { Routes, Route } from 'react-router';
+import { Normalize } from 'styled-normalize';
+import GlobalStyle from 'app/GlobalStyle';
+import { StylesProvider } from '@mui/styles';
+import Home from 'app/pages/home';
+import Login from 'app/pages/login';
+import { SnackbarProvider } from 'notistack';
+import { SessionProvider } from 'app/context/session';
+import Header from './components/header';
+import PostDetail from './pages/postDetail';
 
 function App() {
   return (

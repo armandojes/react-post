@@ -1,20 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { colors } from "app/theme/values";
-import TextFiled from "app/components/TextFiled";
-import { func, object } from "prop-types";
-import Spacer from "app/components/spacer";
-import Text from "app/components/text";
-import Button from "app/components/button";
-import { Collapse } from "@mui/material";
+import React from 'react';
+import styled from 'styled-components';
+import { colors } from 'app/theme/values';
+import TextFiled from 'app/components/TextFiled';
+import { func, object } from 'prop-types';
+import Spacer from 'app/components/spacer';
+import Text from 'app/components/text';
+import Button from 'app/components/button';
+import { Collapse } from '@mui/material';
 
-function Form({
-  inputValues,
-  onInputChange,
-  onClick,
-  inputsWithError,
-  onRemoveError,
-}) {
+function Form({ inputValues, onInputChange, onClick, inputsWithError, onRemoveError }) {
   const handleInputChange = (event) => {
     onInputChange(event.target.name, event.target.value);
   };
@@ -35,7 +29,7 @@ function Form({
       <TextFiled
         onFocus={handleInputFocus}
         error={!!inputsWithError.email}
-        value={inputValues.email || ""}
+        value={inputValues.email || ''}
         name="email"
         onChange={handleInputChange}
       />
@@ -47,7 +41,7 @@ function Form({
       <TextFiled
         onFocus={handleInputFocus}
         error={!!inputsWithError.password}
-        value={inputValues.password || ""}
+        value={inputValues.password || ''}
         onChange={handleInputChange}
         name="password"
       />
