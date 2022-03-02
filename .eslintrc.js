@@ -26,5 +26,6 @@ module.exports = {
   globals: {
     ENV: 'readonly',
     publicPath: 'readonly',
+    LOCAL_API_URL: 'readonly',
   },
 };

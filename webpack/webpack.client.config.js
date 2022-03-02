@@ -40,6 +40,7 @@ const config = {
     new webpack.DefinePlugin({
       publicPath: JSON.stringify(publicPath),
       ENV: JSON.stringify(ENV),
+      LOCAL_API_URL: JSON.stringify(`http://${ip.address()}:3001`),
     }),
   ],
   devServer: {

@@ -13,7 +13,7 @@ function Container({ children, disabledVerticalPadding, className }) {
 const Wrapper = styled.div`
   max-width: 1080px;
   margin: auto;
-  padding: ${(props) => (props.$disabledVerticalPadding ? '0px .5em' : '.5em')};
+  padding: ${(props) => (props.$disabledVerticalPadding ? '0px 1em' : '1em')};
 `;
 
 Container.propTypes = {

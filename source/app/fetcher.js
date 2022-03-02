@@ -14,6 +14,9 @@ import { apiUrl } from 'app/env';
  */
 const fetcher = async (config) => {
   try {
+    await new Promise((resolve) => {
+      setTimeout(resolve, 500);
+    });
     const response = await axios({
       baseURL: apiUrl,
       ...config,

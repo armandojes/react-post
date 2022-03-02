@@ -1,20 +1,19 @@
 /* eslint-disable no-underscore-dangle */
 import { useState } from 'react';
+import hydrateState from './hydrateState';
 import isDom from './isDom';
 import { useRegisterState } from './registerStateContext';
 
 const useIsomorphicState = (key, initialState) => {
   if (isDom) {
-    const serverStates = window.__SERVER__STATES__ || {};
-    const stateByServer = serverStates[key];
-    const reactStateHandler = useState(stateByServer || initialState);
-    setTimeout(() => {
-      delete serverStates[key];
-    }, 2000);
-    return reactStateHandler;
+    const [state, setState] = useState(hydrateState(key) || initialState);
+    const setFragmentState = (newState) => setState((prevState) => ({ ...prevState, ...newState }));
+    return [state, setState, setFragmentState];
   }
   const registerState = useRegisterState();
-  return registerState(initialState, key);
+  const [state, setState] = registerState(initialState, key);
+  const setFragmentState = (newState) => setState((prevState) => ({ ...prevState, ...newState }));
+  return [state, setState, setFragmentState];
 };
 
 export default useIsomorphicState;

@@ -5,7 +5,7 @@ const runtime = {
 };
 
 const apiUrlList = {
-  [runtime.development]: 'http://localhost:3001',
+  [runtime.development]: LOCAL_API_URL,
   [runtime.production]: '',
   [runtime.developmentOnline]: '',
 };

@@ -36,6 +36,7 @@ const config = {
     new webpack.DefinePlugin({
       publicPath: JSON.stringify(publicPath),
       ENV: JSON.stringify(process.env.NODE_ENV),
+      LOCAL_API_URL: JSON.stringify(`http://${ip.address()}:3001`),
     }),
   ],
   resolve: {
