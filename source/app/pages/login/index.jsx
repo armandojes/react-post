@@ -21,7 +21,7 @@ const formValidator = (values) =>
     password: {
       required: true,
       length: { min: 8, max: 50 },
-      message: 'La contraseña es inválida',
+      message: 'La contraseña no es válida',
     },
   });
 

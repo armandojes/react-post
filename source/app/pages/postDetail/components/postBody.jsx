@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import MarkdownIt from 'markdown-it';
 import { string } from 'prop-types';
 import React from 'react';

@@ -8,8 +8,13 @@ import Text from '../text';
 import Responsive from '../hide';
 import { colors } from '../../theme/values';
 import ToogleMode from './components/toogleMode';
+import { useSession } from '../../context/session';
 
 function Header() {
+  const { session, setSession } = useSession();
+
+  const handleCloseSession = () => setSession(null);
+
   return (
     <HeaderStyled>
       <Container disabledVerticalPadding>
@@ -27,6 +32,16 @@ function Header() {
                 <MenuItem to="/ssr">
                   <Text color={colors.white}>SSR</Text>
                 </MenuItem>
+                {!session && (
+                  <MenuItem to="/login">
+                    <Text color={colors.white}>Entrar</Text>
+                  </MenuItem>
+                )}
+                {!!session && (
+                  <MenuItem as="div" onClick={handleCloseSession}>
+                    <Text color={colors.white}>Cerrar session</Text>
+                  </MenuItem>
+                )}
               </MenuWrapper>
             </LeftSection>
           </Responsive>

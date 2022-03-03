@@ -87,6 +87,13 @@ const FormElement = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
+  @media screen and (max-width: 600px) {
+    width: 90%;
+    padding: 0em;
+    border: none;
+    box-shadow: none;
+    max-width: 350px;
+  }
 `;
 
 const ErrorMessage = styled.div`
