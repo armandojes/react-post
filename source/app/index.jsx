@@ -9,7 +9,9 @@ import { SnackbarProvider } from 'notistack';
 import { SessionProvider } from 'app/context/session';
 import Header from './components/header';
 import PostDetail from './pages/postDetail';
+import PostEditor from './pages/postEditor';
 import 'highlight.js/styles/github.css';
+import 'react-markdown-editor-lite/lib/index.css';
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/post/:postUrl" element={<PostDetail />} />
+              <Route path="/post-editor" element={<PostEditor />} />
             </Routes>
           </>
         </SnackbarProvider>
