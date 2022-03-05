@@ -6,7 +6,8 @@ import { useServerParams } from './serverParams';
 
 const sessionContext = createContext({ session: {}, setSession: () => {} });
 
-const useSession = () => useContext(sessionContext);
+const useSession = () => useContext(sessionContext).session;
+const useSetSession = () => useContext(sessionContext).setSession;
 
 function SessionProvider({ children }) {
   const serverParams = useServerParams();
@@ -27,9 +28,10 @@ SessionProvider.propTypes = {
   children: element.isRequired,
 };
 
-export { SessionProvider, useSession };
+export { SessionProvider, useSession, useSetSession };
 
 export default {
   SessionProvider,
   useSession,
+  useSetSession,
 };

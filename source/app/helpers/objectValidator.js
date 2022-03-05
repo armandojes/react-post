@@ -5,6 +5,7 @@ import Validate, { SchemaDefinition } from 'validate';
  * validate object
  * @param {Object} data - object to validate
  * @param {SchemaDefinition} schemaDefinition - schema definition
+ * @return {Object|null} object of error or null if there are no error
  */
 const objectValidator = (data = {}, schemaDefinition = {}) => {
   const schema = new Validate(schemaDefinition);

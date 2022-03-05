@@ -3,7 +3,7 @@ import deleteObjectNullProperties from 'app/helpers/deleteObjectNullProperties';
 
 const useForm = (config = {}) => {
   const [inputValues, setInputValues] = useState(config.initialState || {});
-  const [inputsWithError, setInputsWithErrors] = useState(config.initialErrors || {});
+  const [inputErrors, setInputErrors] = useState(config.initialErrors || {});
 
   const updateFormValue = (inputName, inputValue) => {
     const newState = { ...inputValues, [inputName]: inputValue };
@@ -11,17 +11,17 @@ const useForm = (config = {}) => {
   };
 
   const removeInputError = (inputName) => {
-    const newInputErrors = { ...inputsWithError };
+    const newInputErrors = { ...inputErrors };
     delete newInputErrors[inputName];
-    setInputsWithErrors(newInputErrors);
+    setInputErrors(newInputErrors);
   };
 
   return {
     inputValues,
-    inputsWithError,
+    inputErrors,
     updateFormValue,
     removeInputError,
-    setInputsWithErrors,
+    setInputErrors,
   };
 };
 

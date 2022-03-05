@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { colors } from 'app/theme/values';
 import TextFiled from 'app/components/TextFiled';
@@ -7,41 +7,14 @@ import Spacer from 'app/components/spacer';
 import Text from 'app/components/text';
 import Button from 'app/components/button';
 import { Collapse } from '@mui/material';
-import objectValidator from 'app/helpers/objectValidator';
 
-const formValidator = (values) =>
-  objectValidator(values, {
-    email: {
-      required: true,
-      match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      length: { min: 5, max: 80 },
-      message: 'El correo no es válido',
-    },
-    password: {
-      required: true,
-      length: { min: 8, max: 50 },
-      message: 'La contraseña no es válida',
-    },
-  });
-
-function Form({ inputValues, onInputChange, onAcept }) {
-  const [errors, setErrors] = useState({});
+function Form({ onLogIn, onInputChange, onRemoveInputError, inputValues, inputErrors }) {
   const handleInputChange = (event) => {
     onInputChange(event.target.name, event.target.value);
   };
 
   const handleInputFocus = (event) => {
-    if (errors[event.target.name]) {
-      const currentErrors = { ...errors };
-      delete currentErrors[event.target.name];
-      setErrors(currentErrors);
-    }
-  };
-
-  const handleValidateAcept = () => {
-    const currentErrors = formValidator(inputValues);
-    if (currentErrors) setErrors(currentErrors);
-    else onAcept();
+    onRemoveInputError(event.target.name);
   };
 
   return (
@@ -53,32 +26,32 @@ function Form({ inputValues, onInputChange, onAcept }) {
       <Text>Correo electrónico</Text>
       <TextFiled
         onFocus={handleInputFocus}
-        error={!!errors.email}
+        error={!!inputErrors.email}
         value={inputValues.email || ''}
         name="email"
         onChange={handleInputChange}
       />
-      <Collapse in={!!errors.email}>
-        <ErrorMessage>{errors.email}</ErrorMessage>
+      <Collapse in={!!inputErrors.email}>
+        <ErrorMessage>{inputErrors.email}</ErrorMessage>
       </Collapse>
       <Spacer height="1em" />
       <Text>contraseña</Text>
       <TextFiled
         onFocus={handleInputFocus}
-        error={!!errors.password}
+        error={!!inputErrors.password}
         value={inputValues.password || ''}
         onChange={handleInputChange}
         name="password"
       />
-      <Collapse in={!!errors.password}>
-        <ErrorMessage>{errors.password}</ErrorMessage>
+      <Collapse in={!!inputErrors.password}>
+        <ErrorMessage>{inputErrors.password}</ErrorMessage>
       </Collapse>
       <Spacer height="1.5em" />
       <Button
+        onClick={onLogIn}
         textAlign="center"
         backgrounColor={colors.blueLight}
         textColor={colors.white}
-        onClick={handleValidateAcept}
         textHoverColor={colors.white}
       >
         Iniciar session
@@ -89,15 +62,19 @@ function Form({ inputValues, onInputChange, onAcept }) {
 }
 
 Form.propTypes = {
-  onAcept: func,
+  onLogIn: func,
   inputValues: object,
   onInputChange: func,
+  onRemoveInputError: func,
+  inputErrors: object,
 };
 
 Form.defaultProps = {
+  onLogIn: () => {},
   onInputChange: () => {},
-  onAcept: () => {},
+  onRemoveInputError: () => {},
   inputValues: {},
+  inputErrors: {},
 };
 
 const FormElement = styled.div`
