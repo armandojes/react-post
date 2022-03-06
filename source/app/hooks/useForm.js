@@ -6,8 +6,10 @@ const useForm = (config = {}) => {
   const [inputErrors, setInputErrors] = useState(config.initialErrors || {});
 
   const updateFormValue = (inputName, inputValue) => {
-    const newState = { ...inputValues, [inputName]: inputValue };
-    setInputValues(deleteObjectNullProperties(newState));
+    setInputValues((prevState) => {
+      const newState = { ...prevState, [inputName]: inputValue };
+      return deleteObjectNullProperties(newState);
+    });
   };
 
   const removeInputError = (inputName) => {
