@@ -3,7 +3,7 @@ import MdEditor from 'react-markdown-editor-lite';
 import { func, object } from 'prop-types';
 import parseMarkdown from '../../../helpers/parseMarkdown';
 
-function BodyEditor({ onInputChange, inputValues }) {
+function BodyEditor({ onAnyInputChange, inputValues }) {
   const formatImage = (imageAsFile) => {
     const temporaryUrl = URL.createObjectURL(imageAsFile);
     const image = new File([imageAsFile], temporaryUrl, { type: imageAsFile.type });
@@ -11,14 +11,14 @@ function BodyEditor({ onInputChange, inputValues }) {
   };
 
   const handleBodyChange = (richValue) => {
-    onInputChange('body', richValue.text);
+    onAnyInputChange('body', richValue.text);
   };
 
   const handleImagesChange = async (newImage) => {
     const prevImages = inputValues.images ? [...inputValues.images] : [];
     const formatedImage = formatImage(newImage);
     const composedImages = [...prevImages, formatedImage.image];
-    onInputChange('images', composedImages);
+    onAnyInputChange('images', composedImages);
     console.log('formatedImage.temporaryUrl', formatedImage.temporaryUrl);
     return formatedImage.temporaryUrl;
   };
@@ -37,7 +37,7 @@ function BodyEditor({ onInputChange, inputValues }) {
 }
 
 BodyEditor.propTypes = {
-  onInputChange: func.isRequired,
+  onAnyInputChange: func.isRequired,
   inputValues: object.isRequired,
 };
 

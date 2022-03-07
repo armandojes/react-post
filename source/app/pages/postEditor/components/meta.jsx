@@ -1,15 +1,15 @@
 import { Box, TextField } from '@mui/material';
 import React from 'react';
-import propTypes from 'prop-types';
+import { object, func } from 'prop-types';
 import TagsInput from './tagsInput';
 
-function Meta({ inputValues, onInputChange }) {
+function Meta({ inputValues, onAnyInputChange }) {
   const handleInputChange = (event) => {
-    onInputChange(event.target.name, event.target.value);
+    onAnyInputChange(event.target.name, event.target.value);
   };
 
   const handleTagsChange = (value) => {
-    onInputChange('tags', value);
+    onAnyInputChange('tags', value);
   };
 
   return (
@@ -41,8 +41,8 @@ function Meta({ inputValues, onInputChange }) {
 }
 
 Meta.propTypes = {
-  inputValues: propTypes.object.isRequired,
-  onInputChange: propTypes.func.isRequired,
+  onAnyInputChange: func.isRequired,
+  inputValues: object.isRequired,
 };
 
 export default Meta;
