@@ -1,22 +1,11 @@
+import useForm from 'app/hooks/useForm';
 import React from 'react';
-import Container from 'app/components/container';
-import Form from './components/form';
-import useForm from '../../hooks/useForm';
+import PostEditorView from './view';
 
 function PostEditor() {
-  const form = useForm({});
+  const { inputValues, updateFormValue } = useForm();
 
-  return (
-    <Container>
-      <Form
-        onRemoveInputError={form.removeInputError}
-        onInputChange={form.updateFormValue}
-        inputValues={form.inputValues}
-        inputErrors={form.inputErrors}
-        step={1}
-      />
-    </Container>
-  );
+  return <PostEditorView onInputChange={updateFormValue} inputValues={inputValues} />;
 }
 
 export default PostEditor;

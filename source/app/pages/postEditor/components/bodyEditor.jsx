@@ -24,13 +24,15 @@ function BodyEditor({ onInputChange, inputValues }) {
   };
 
   return (
-    <MdEditor
-      value={inputValues.body || ''}
-      style={{ minHeight: '700px' }}
-      onImageUpload={handleImagesChange}
-      renderHTML={parseMarkdown}
-      onChange={handleBodyChange}
-    />
+    <div>
+      <MdEditor
+        value={inputValues.body || ''}
+        style={{ minHeight: '700px' }}
+        onImageUpload={handleImagesChange}
+        renderHTML={parseMarkdown}
+        onChange={handleBodyChange}
+      />
+    </div>
   );
 }
 

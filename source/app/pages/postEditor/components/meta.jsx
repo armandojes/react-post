@@ -3,11 +3,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import TagsInput from './tagsInput';
 
-function Meta({ inputValues, inputErrors, onInputChange, onRemoveInputError }) {
-  const handleInputFocus = (event) => {
-    onRemoveInputError(event.target.name);
-  };
-
+function Meta({ inputValues, onInputChange }) {
   const handleInputChange = (event) => {
     onInputChange(event.target.name, event.target.value);
   };
@@ -17,11 +13,9 @@ function Meta({ inputValues, inputErrors, onInputChange, onRemoveInputError }) {
   };
 
   return (
-    <>
+    <Box marginBottom="3em">
       <Box paddingBottom="1em" paddingTop="1em">
         <TextField
-          error={!!inputErrors.title}
-          onFocus={handleInputFocus}
           fullWidth
           label="Titulo del post"
           variant="standard"
@@ -32,8 +26,6 @@ function Meta({ inputValues, inputErrors, onInputChange, onRemoveInputError }) {
       </Box>
       <Box paddingTop="1em" paddingBottom="1em">
         <TextField
-          error={!!inputErrors.description}
-          onFocus={handleInputFocus}
           multiline
           fullWidth
           variant="standard"
@@ -44,15 +36,13 @@ function Meta({ inputValues, inputErrors, onInputChange, onRemoveInputError }) {
         />
       </Box>
       <TagsInput onChange={handleTagsChange} value={inputValues.tags || []} />
-    </>
+    </Box>
   );
 }
 
 Meta.propTypes = {
   inputValues: propTypes.object.isRequired,
-  inputErrors: propTypes.object.isRequired,
   onInputChange: propTypes.func.isRequired,
-  onRemoveInputError: propTypes.func.isRequired,
 };
 
 export default Meta;

@@ -1,20 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors } from 'app/theme/values';
 import TextFiled from 'app/components/TextFiled';
-import { func, object } from 'prop-types';
 import Spacer from 'app/components/spacer';
 import Text from 'app/components/text';
 import Button from 'app/components/button';
 import { Collapse } from '@mui/material';
+import objectValidator from 'app/helpers/objectValidator';
+import { func, object } from 'prop-types';
 
-function Form({ onLogIn, onInputChange, onRemoveInputError, inputValues, inputErrors }) {
+const formValidator = (values) =>
+  objectValidator(values, {
+    email: {
+      required: true,
+      match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      length: { min: 5, max: 80 },
+      message: 'El correo no es válido',
+    },
+    password: {
+      required: true,
+      length: { min: 8, max: 50 },
+      message: 'La contraseña no es válida',
+    },
+  });
+
+function Form({ inputValues, onAnyInputChange, onSubmit }) {
+  const [inputsError, setInputsError] = useState({});
+
   const handleInputChange = (event) => {
-    onInputChange(event.target.name, event.target.value);
+    const { name, value } = event.target;
+    onAnyInputChange(name, value);
   };
 
   const handleInputFocus = (event) => {
-    onRemoveInputError(event.target.name);
+    if (inputsError[event.target.name]) {
+      const currentErrors = { ...inputsError };
+      delete currentErrors[event.target.name];
+      setInputsError(currentErrors);
+    }
+  };
+
+  const handleSubmit = (event) => {
+    if (event && event.preventDefault) event.preventDefault();
+    const errors = formValidator(inputValues);
+    if (errors) return setInputsError(errors);
+    return onSubmit(inputValues);
   };
 
   return (
@@ -26,33 +56,33 @@ function Form({ onLogIn, onInputChange, onRemoveInputError, inputValues, inputEr
       <Text>Correo electrónico</Text>
       <TextFiled
         onFocus={handleInputFocus}
-        error={!!inputErrors.email}
-        value={inputValues.email || ''}
-        name="email"
+        error={!!inputsError.email}
+        value={inputValues.email}
         onChange={handleInputChange}
+        name="email"
       />
-      <Collapse in={!!inputErrors.email}>
-        <ErrorMessage>{inputErrors.email}</ErrorMessage>
+      <Collapse in={!!inputsError.email}>
+        <ErrorMessage>{inputsError.email}</ErrorMessage>
       </Collapse>
       <Spacer height="1em" />
       <Text>contraseña</Text>
       <TextFiled
         onFocus={handleInputFocus}
-        error={!!inputErrors.password}
-        value={inputValues.password || ''}
+        error={!!inputsError.password}
+        value={inputValues.password}
         onChange={handleInputChange}
         name="password"
       />
-      <Collapse in={!!inputErrors.password}>
-        <ErrorMessage>{inputErrors.password}</ErrorMessage>
+      <Collapse in={!!inputsError.password}>
+        <ErrorMessage>{inputsError.password}</ErrorMessage>
       </Collapse>
       <Spacer height="1.5em" />
       <Button
-        onClick={onLogIn}
         textAlign="center"
         backgrounColor={colors.blueLight}
         textColor={colors.white}
         textHoverColor={colors.white}
+        onClick={handleSubmit}
       >
         Iniciar session
       </Button>
@@ -62,22 +92,12 @@ function Form({ onLogIn, onInputChange, onRemoveInputError, inputValues, inputEr
 }
 
 Form.propTypes = {
-  onLogIn: func,
-  inputValues: object,
-  onInputChange: func,
-  onRemoveInputError: func,
-  inputErrors: object,
+  onSubmit: func.isRequired,
+  onAnyInputChange: func.isRequired,
+  inputValues: object.isRequired,
 };
 
-Form.defaultProps = {
-  onLogIn: () => {},
-  onInputChange: () => {},
-  onRemoveInputError: () => {},
-  inputValues: {},
-  inputErrors: {},
-};
-
-const FormElement = styled.div`
+const FormElement = styled.form`
   padding: 2em;
   border: 1px solid ${colors.gray};
   box-shadow: 5px 5px 10px ${colors.gray};
